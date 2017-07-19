@@ -8,7 +8,7 @@
 return [
     'controller_plugins' => [ 
         'invokables' => [ 
-            'app'    => Plugin\GenericPlugin::class,
+            'app'    => Zf2ServiceBase\Plugin\GenericPlugin::class,
         ]
     ],
     

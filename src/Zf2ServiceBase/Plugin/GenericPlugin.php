@@ -1,10 +1,10 @@
 <?php
 
-namespace Zf3ServiceBase\Plugin;
+namespace Zf2ServiceBase\Plugin;
 
 use Zend\Mvc\Controller\Plugin\AbstractPlugin;
 
-use Zf3ServiceBase\Service\ServiceManager;
+use Zf2ServiceBase\Service\ServiceManager;
 
 class GenericPlugin extends AbstractPlugin {
 
@@ -20,7 +20,7 @@ class GenericPlugin extends AbstractPlugin {
             $module = $this->getModuleClass($module);
         }
         
-        $service = $this->getController()->getServiceManager()->get(ServiceManager::class)->getService($module, $entity_name, ServiceManager::TYPE_ENTITY);
+        $service = $this->getController()->getServiceLocator()->get(ServiceManager::class)->getService($module, $entity_name, ServiceManager::TYPE_ENTITY);
         return $service;
     }
     

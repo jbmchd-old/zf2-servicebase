@@ -36,13 +36,13 @@ class Module
     }
     
     public function getServiceConfig() {
-//        return [ 
-//            'factories' => [ 
-//                Service\ServiceManager::class => function( $sm ) {
-//                    return new Service\ServiceManager($sm->get('ZeDbManager'));
-//                },
-//            ]
-//        ];
+        return [ 
+            'factories' => [ 
+                Service\ServiceManager::class => function( $sm ) {
+                    return new Service\ServiceManager($sm->get('ZeDbManager'));
+                },
+            ]
+        ];
     }
 
 }

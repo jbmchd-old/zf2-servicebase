@@ -1,6 +1,6 @@
 <?php
 
-namespace Zf3ServiceBase\Service;
+namespace Zf2ServiceBase\Service;
 
 class ServiceManager {
 

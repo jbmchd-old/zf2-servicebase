@@ -1,8 +1,8 @@
 <?php
 
-namespace Zf3ServiceBase\Service;
+namespace Zf2ServiceBase\Service;
 
-use Zf3ServiceBase\Service\ServiceManager;
+use ZfServiceBase\Service\ServiceManager;
 
 abstract class GenericService {
 

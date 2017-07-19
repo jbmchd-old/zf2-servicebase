@@ -1,6 +1,6 @@
 <?php
 
-namespace Zf3ServiceBase\Controller;
+namespace Zf2ServiceBase\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController,
     Zend\ServiceManager\ServiceManager;
