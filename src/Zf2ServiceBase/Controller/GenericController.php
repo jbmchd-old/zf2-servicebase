@@ -2,42 +2,20 @@
 
 namespace Zf2ServiceBase\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController,
-    Zend\ServiceManager\ServiceManager;
+use Zend\Mvc\Controller\AbstractActionController;
+use Zend\Session\Container as SessionContainer;
+
 
 abstract class GenericController extends AbstractActionController {
-    
-    /**
-     * @var \Zend\ServiceManager\ServiceManager
-     */
-    protected $sm;
-    
-    protected $config;
 
-    private $namespace = __NAMESPACE__;
-    
-    const FLASH_MESSAGE_TO_LAYOUT = 1;
-    
-    public function __construct(ServiceManager $sm, $namespace = __NAMESPACE__) {
-        $this->sm = $sm;
-        $this->config = $this->sm->get('config');
-        $this->setNamespace($namespace);
+    protected function getSession($name=null){
+        if($name == null){
+            $config = $this->getServiceLocator()->get('config');
+            $name = $config['htsession']['options']['config_options']['name'];
+        }
+        return new SessionContainer($name);
     }
 
-    public function __invoke() {
-        die(__NAMESPACE__.__CLASS__);
-    }
-    
-    public function getServiceManager(){return $this->sm;}
-    
-    public function setNamespace($namespace){
-        $this->namespace = $namespace;
-    }
-    
-    public function getNamespace(){
-        return $this->namespace;
-    }
-    
     public function setFlashMessage($msg, $tipo){
         $flash = $this->flashMessenger();
         if($tipo === 'success'){
@@ -50,7 +28,7 @@ abstract class GenericController extends AbstractActionController {
             $flash->addMessage($msg);
         } 
     }
-    
+//    
     public function getAllFlashMessages( $destino = 0 ){
         $flash = $this->flashMessenger();
         $msg_controller=[];
@@ -76,19 +54,19 @@ abstract class GenericController extends AbstractActionController {
             return $msg_controller;
         }
     }
-    
-    public function superArrayUnique(array $arrays){
-        $merge=[];
-        foreach ($arrays as $array) {
-            $merge = array_merge_recursive($merge, $array); 
-        }
-        
-        $merge_unique = [];
-        foreach ($merge as $key => $array) {
-            $unique = array_unique($array);
-            $merge_unique[$key] = (sizeof($unique)==1)?$unique[0]:$unique;
-        }
-        return $merge_unique;
-    }
+//    
+//    public function superArrayUnique(array $arrays){
+//        $merge=[];
+//        foreach ($arrays as $array) {
+//            $merge = array_merge_recursive($merge, $array); 
+//        }
+//        
+//        $merge_unique = [];
+//        foreach ($merge as $key => $array) {
+//            $unique = array_unique($array);
+//            $merge_unique[$key] = (sizeof($unique)==1)?$unique[0]:$unique;
+//        }
+//        return $merge_unique;
+//    }
 
 }

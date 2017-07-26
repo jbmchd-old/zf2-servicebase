@@ -11,5 +11,4 @@ return [
             'app'    => Zf2ServiceBase\Plugin\GenericPlugin::class,
         ]
     ],
-    
 ];
